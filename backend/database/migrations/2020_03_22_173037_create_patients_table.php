@@ -16,8 +16,12 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('age')->nullable();
             $table->text('address')->nullable();
-            $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('state_id');
+            $table->unsignedBigInteger('district_id');
+            //$table->unsignedBigInteger('city_id');
+            $table->string('city');
             $table->integer('pincode')->nullable();
             $table->json('symptoms');
             $table->text('message')->nullable();
@@ -31,8 +35,10 @@ class CreatePatientsTable extends Migration
             $table->unsignedBigInteger('lostpatient_id')->nullable();
             $table->boolean('is_read')->default(0);
             $table->boolean('is_solved')->default(0);
+            $table->text('remarks')->nullable();
             $table->timestamps();
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('district_id')->references('id')->on('districts');
         });
     }
 

@@ -101,7 +101,7 @@ return [
     |
     */
 
-    'ttl' => env('JWT_TTL', 60),
+    'ttl' => env('JWT_TTL', 10080),
 
     /*
     |--------------------------------------------------------------------------
@@ -274,7 +274,7 @@ return [
         | Specify the provider that is used to create and decode the tokens.
         |
         */
-
+        //Lcobucci
         'jwt' => Tymon\JWTAuth\Providers\JWT\Lcobucci::class,
 
         /*

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\User;
+use Hash;
 
 class AuthController extends Controller
 {
@@ -16,7 +18,7 @@ class AuthController extends Controller
    */
   public function __construct()
   {
-      $this->middleware('auth:api', ['except' => ['login']]);
+      $this->middleware('auth:api', ['except' => ['login','register']]);
   }
 
   /**
@@ -28,8 +30,8 @@ class AuthController extends Controller
   {
       $credentials = request(['email', 'password']);
 
-      if (! $token = auth()->attempt($credentials)) {
-          return response()->json(['error' => 'Unauthorized'], 401);
+      if (! $token = auth('api')->attempt($credentials)) {
+          return response()->json(['error' => 'Invalid Email/Password'], 401);
       }
 
       return $this->respondWithToken($token);
@@ -42,18 +44,22 @@ class AuthController extends Controller
    */
   public function register(Request $request)
   {
-    $validatedData = $request->validate([
+    $validator = Validator::make($request->all(),[
       'name' => ['required', 'string', 'max:255'],
-      'mobile'=>['required','numeric','max:10','unique:users'],
+      'mobile'=>['required','numeric','digits:10','unique:users'],
       'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
       'password' => ['required', 'string', 'min:8', 'confirmed'],
     ]);
-    
+
+    if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors()],400);
+    }
+
     User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'mobile' => $data['mobile'],
-        'password' => Hash::make($data['password']),
+        'name' => $request['name'],
+        'email' => $request['email'],
+        'mobile' => $request['mobile'],
+        'password' => Hash::make($request['password']),
     ]);
       $credentials = request(['email', 'password']);
 
@@ -71,7 +77,7 @@ class AuthController extends Controller
    */
   public function me()
   {
-      return response()->json(auth()->user());
+      return response()->json(auth('api')->user(),200);
   }
 
   /**
@@ -93,7 +99,7 @@ class AuthController extends Controller
    */
   public function refresh()
   {
-      return $this->respondWithToken(auth()->refresh());
+      return $this->respondWithToken(auth('api')->refresh());
   }
 
   /**
@@ -105,11 +111,14 @@ class AuthController extends Controller
    */
   protected function respondWithToken($token)
   {
-      return response()->json([
-          'access_token' => $token,
+      //$data=[];
+      $data=[
+          'token' => $token,
           'token_type' => 'bearer',
-          'expires_in' => auth()->factory()->getTTL() * 60
-      ]);
+          'expires_in' => auth('api')->factory()->getTTL() * 60,
+          'user' => auth('api')->user()
+      ];
+      return response()->json($data,200);
   }
 
 }
