@@ -15,6 +15,8 @@ class LostPatientController extends Controller
     public function index()
     {
         //
+        $lostpatients = Lostpatient::paginate(15);
+        return view('lostpatients.index', ['lostpatients' => $lostpatients]);
     }
 
     /**
@@ -25,6 +27,7 @@ class LostPatientController extends Controller
     public function create()
     {
         //
+        return view('lostpatients.create');
     }
 
     /**
@@ -36,6 +39,23 @@ class LostPatientController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name'=>'required',
+            'message'=>'required',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg,JPEG,JPG,PNG,GIF,SVG'
+        ]);
+        $imageName = time().'.'.$request->image->extension();
+
+        $request->image->move(public_path('images/lostpatients'), $imageName);
+        $path='images/lostpatients/'.$imageName;
+
+        $lostpatient = new Lostpatient([
+            'name' => $request->get('name'),
+            'message' => $request->get('message'),
+            'image' => $path
+        ]);
+        $lostpatient->save();
+        return redirect('/lostpatients')->with('success', 'Lost Patient created successfully!');
     }
 
     /**
@@ -58,6 +78,7 @@ class LostPatientController extends Controller
     public function edit(Lostpatient $lostpatient)
     {
         //
+        return view('lostpatients.edit',compact('lostpatient'));
     }
 
     /**
@@ -70,6 +91,21 @@ class LostPatientController extends Controller
     public function update(Request $request, Lostpatient $lostpatient)
     {
         //
+        $request->validate([
+            'name'=>'required',
+            'message'=>'required',
+            'image' => 'mimes:jpeg,png,jpg,gif,svg,JPEG,JPG,PNG,GIF,SVG'
+        ]);
+        if($request->image){
+              $imageName = time().'.'.$request->image->extension();
+              $request->image->move(public_path('images/lostpatients'), $imageName);
+              $path='images/lostpatients/'.$imageName;
+              $lostpatient->image = $path;
+        }
+        $lostpatient->name = $request->get('name');
+        $lostpatient->message = $request->get('message');
+        $lostpatient->save();
+        return redirect()->back()->with('success', 'Lost Patient updated successfully!');
     }
 
     /**
@@ -81,5 +117,7 @@ class LostPatientController extends Controller
     public function destroy(Lostpatient $lostpatient)
     {
         //
+        $lostpatient->delete();
+        return redirect('/lostpatients')->with('success', 'Lost Patient deleted successfully!');
     }
 }

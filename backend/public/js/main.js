@@ -18,6 +18,9 @@ async function loadPreviousState(){
   await getDistricts();
   var district = $('#districtme').val();
   $('.district-select option[value="'+district+'"]').prop('selected', true);
+  await getCities();
+  var city = $('#cityme').val();
+  $('.city-select option[value="'+city+'"]').prop('selected', true);
 }
 
 function getStates(){
@@ -58,6 +61,27 @@ function getDistricts(){
       });
     }else{
       $('#district_id').val('');
+      resolve('resolved');
+    }
+  });
+}
+
+function getCities(){
+  return new Promise(resolve => {
+    var district_id=$('#district_id').val();
+    var $select = $('#city_id');
+    $select.find('option').remove();
+    if(district_id != null || district_id != undefined || district_id != ''){
+      $.get('/country/state/district/cities', {district_id:district_id}, function (data, textStatus, jqXHR) {
+        $select.append('<option value="">Select City</option>');
+        $.each(data.data,function(key, value)
+        {
+            $select.append('<option value=' + value.id + '>' + value.name + '</option>');
+        });
+        resolve('resolved');
+      });
+    }else{
+      $('#city_id').val('');
       resolve('resolved');
     }
   });

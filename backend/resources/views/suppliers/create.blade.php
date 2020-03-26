@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Create City <span class="float-right"><a href="{{route('cities.index')}}">Back</a></span></div>
+                <div class="card-header">Create Supplier <span class="float-right"><a href="{{route('suppliers.index')}}">Back</a></span></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('cities.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('suppliers.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
@@ -20,6 +20,47 @@
                                     </span>
                                 @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label for="packageinfo">{{ __('Package Information') }}</label>
+                            <textarea id="packageinfo" class="form-control @error('packageinfo') is-invalid @enderror" name="packageinfo" required>{{ old('packageinfo') }}</textarea>
+                                @error('packageinfo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact">{{ __('Contact Information') }}</label>
+                            <textarea id="contact" class="form-control @error('contact') is-invalid @enderror" name="contact" required>{{ old('contact') }}</textarea>
+                                @error('contact')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deliveryarea">{{ __('Delivery Area') }}</label>
+                            <textarea id="deliveryarea" class="form-control @error('deliveryarea') is-invalid @enderror" name="deliveryarea" required>{{ old('deliveryarea') }}</textarea>
+                                @error('deliveryarea')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">{{ __('Address') }}</label>
+                            <textarea id="address" class="form-control @error('address') is-invalid @enderror" name="address" required>{{ old('address') }}</textarea>
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
 
                         <div class="form-group">
                             <label for="pincode">{{ __('Pincode') }}</label>
@@ -61,11 +102,34 @@
 
                         <div class="form-group">
                             <label for="district_id">{{ __('District') }}</label>
-                                <select id="district_id" class="district-select form-control @error('district_id') is-invalid @enderror" required name="district_id">
+                                <select onchange="getCities()" id="district_id" class="district-select form-control @error('district_id') is-invalid @enderror" required name="district_id">
                                   <option value="">Select District</option>
                                 </select>
                                 <input type="hidden" value="{{ old('district_id') }}" name="districtme" id="districtme">
                                 @error('district_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city_id">{{ __('City') }}</label>
+                                <select id="city_id" class="city-select form-control @error('city_id') is-invalid @enderror" required name="city_id">
+                                  <option value="">Select City</option>
+                                </select>
+                                <input type="hidden" value="{{ old('city_id') }}" name="cityme" id="cityme">
+                                @error('city_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image" >{{ __('Image') }}</label>
+                                <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}">
+                                @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -8,6 +8,7 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
+                    <p>You are logged in!</p>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -89,8 +90,8 @@
                       <div class="card">
                         <div class="card-body">
                           <h5 class="card-title">Lost/Runaway Patients</h5>
-                          <a href="{{route('precautions.index')}}" class="card-link">All</a>
-                          <a href="{{route('precautions.create')}}" class="card-link">Create New</a>
+                          <a href="{{route('lostpatients.index')}}" class="card-link">All</a>
+                          <a href="{{route('lostpatients.create')}}" class="card-link">Create New</a>
                         </div>
                       </div>
 
@@ -104,7 +105,19 @@
 
                     </div>
 
-                    You are logged in!
+                    <div class="card-group mt-2">
+
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Raasan Suppliers</h5>
+                          <a href="{{route('suppliers.index')}}" class="card-link">All</a>
+                          <a href="{{route('suppliers.create')}}" class="card-link">Create New</a>
+                        </div>
+                      </div>
+
+                    </div>
+
+
                 </div>
             </div>
         </div>

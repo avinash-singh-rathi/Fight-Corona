@@ -114,4 +114,12 @@ class CityController extends Controller
         $city->delete();
         return redirect('/cities')->with('success', 'City deleted successfully!');
     }
+
+    /*
+    Get the cities by the district id and return json
+    */
+    public function getCitiesByDistrict(Request $request){
+      $cities=City::where('district_id',$request->get('district_id'))->get();
+      return response()->json(['data'=>$cities],200);
+    }
 }

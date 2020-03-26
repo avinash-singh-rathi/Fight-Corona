@@ -29,3 +29,6 @@ Route::middleware('auth')->get('/country/states','StateController@getStatesByCou
 Route::middleware('auth')->resource('districts', 'DistrictController');
 Route::middleware('auth')->get('/country/state/districts','DistrictController@getDistrictsByState');
 Route::middleware('auth')->resource('cities', 'CityController');
+Route::middleware('auth')->get('/country/state/district/cities','CityController@getCitiesByDistrict');
+Route::middleware('auth')->resource('suppliers', 'SupplierController');
+Route::middleware('auth')->resource('lostpatients', 'LostPatientController');
