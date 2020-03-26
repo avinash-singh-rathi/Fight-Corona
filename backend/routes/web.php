@@ -32,3 +32,4 @@ Route::middleware('auth')->resource('cities', 'CityController');
 Route::middleware('auth')->get('/country/state/district/cities','CityController@getCitiesByDistrict');
 Route::middleware('auth')->resource('suppliers', 'SupplierController');
 Route::middleware('auth')->resource('lostpatients', 'LostPatientController');
+Route::middleware('auth')->resource('helplines', 'HelplineController');

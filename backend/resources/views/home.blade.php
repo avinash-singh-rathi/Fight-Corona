@@ -82,8 +82,8 @@
                       <div class="card">
                         <div class="card-body">
                           <h5 class="card-title">HelpLine Numbers</h5>
-                          <a href="{{route('posts.index')}}" class="card-link">All</a>
-                          <a href="{{route('posts.create')}}" class="card-link">Create New</a>
+                          <a href="{{route('helplines.index')}}" class="card-link">All</a>
+                          <a href="{{route('helplines.create')}}" class="card-link">Create New</a>
                         </div>
                       </div>
 

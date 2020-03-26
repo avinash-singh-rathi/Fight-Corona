@@ -16,8 +16,9 @@ class CreateHelplinesTable extends Migration
         Schema::create('helplines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('contact');
-            $table->unsignedBigInteger('state_id');
+            $table->text('contact');
+            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('state_id')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
             $table->timestamps();
