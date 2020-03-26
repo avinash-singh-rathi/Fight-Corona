@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Model\Country;
 use Hash;
 
 class AuthController extends Controller
@@ -120,5 +121,6 @@ class AuthController extends Controller
       ];
       return response()->json($data,200);
   }
+
 
 }

@@ -24,3 +24,10 @@ Route::group(['middleware' => 'api','namespace'=>'Api'], function ($router) {
     Route::post('refresh', 'AuthController@refresh');
     Route::post('user', 'AuthController@me');
 });
+Route::group(['middleware' => 'auth:api','namespace'=>'Api'], function ($router) {
+  Route::get('countries', 'LocationController@countries');
+  Route::get('countries/{id}/states', 'LocationController@states');
+  Route::get('states/{id}/districts', 'LocationController@districts');
+  Route::get('districts/{id}/cities', 'LocationController@cities');
+  Route::get('cities/{id}/suppliers', 'LocationController@CitySuppliers');
+});

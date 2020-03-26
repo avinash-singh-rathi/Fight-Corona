@@ -11,8 +11,17 @@ class Supplier extends Model
         'name', 'city_id', 'pincode', 'address', 'deliveryarea', 'packageinfo', 'contact', 'image'
     ];
 
+    protected $appends = ['image_url'];
+
     public function city()
     {
         return $this->belongsTo('App\Model\City');
+    }
+
+    public function getImageUrlAttribute(){
+        if($this->image){
+          return url($this->image);
+        }
+        return NULL;
     }
 }
