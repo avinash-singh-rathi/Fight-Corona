@@ -43,6 +43,7 @@ class SupplierController extends Controller
         $request->validate([
             'name'=>'required|unique:suppliers,name,null,null,city_id,'.$request->get('city_id'),
             'pincode'=>'required',
+            'mobile'=>'required','numeric','digits:10',
             'address'=>'required',
             'packageinfo'=>'required',
             'contact'=>'required',
@@ -53,6 +54,7 @@ class SupplierController extends Controller
         $supplier = new Supplier([
             'name' => $request->get('name'),
             'pincode' => $request->get('pincode'),
+            'mobile' => $request->get('mobile'),
             'address' => $request->get('address'),
             'deliveryarea' => $request->get('deliveryarea'),
             'packageinfo' => $request->get('packageinfo'),
@@ -107,6 +109,7 @@ class SupplierController extends Controller
         $request->validate([
             'name'=>'required|unique:suppliers,name,'.$supplier->id.',id,city_id,'.$request->get('city_id'),
             'pincode'=>'required',
+            'mobile'=>'required','numeric','digits:10',
             'address'=>'required',
             'packageinfo'=>'required',
             'contact'=>'required',
@@ -117,6 +120,7 @@ class SupplierController extends Controller
             $supplier->pincode = $request->get('pincode');
             $supplier->city_id = $request->get('city_id');
             $supplier->address = $request->get('address');
+            $supplier->mobile = $request->get('mobile');
             $supplier->deliveryarea = $request->get('deliveryarea');
             $supplier->packageinfo = $request->get('packageinfo');
             $supplier->contact = $request->get('contact');

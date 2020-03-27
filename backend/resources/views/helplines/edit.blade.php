@@ -32,7 +32,7 @@
 
                         <div class="form-group">
                             <label for="contact">{{ __('Contact Information') }}</label>
-                            <textarea id="contact" class="form-control @error('contact') is-invalid @enderror" name="contact" required>{{ old('contact',$helpline->contact) }}</textarea>
+                            <input type="number" id="contact" class="form-control @error('contact') is-invalid @enderror" name="contact" required value="{{ old('contact',$helpline->contact) }}">
                                 @error('contact')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

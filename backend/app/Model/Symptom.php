@@ -12,4 +12,12 @@ class Symptom extends Model
         'name', 'content', 'image'
     ];
 
+    protected $appends = ['image_url'];
+
+    public function getImageUrlAttribute(){
+        if($this->image){
+          return url($this->image);
+        }
+        return NULL;
+    }
 }

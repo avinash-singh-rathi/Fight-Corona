@@ -42,6 +42,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="mobile">{{ __('Mobile') }}</label>
+                            <input type="text" id="mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile" required value="{{ old('mobile') }}">
+                                @error('mobile')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label for="deliveryarea">{{ __('Delivery Area') }}</label>
                             <textarea id="deliveryarea" class="form-control @error('deliveryarea') is-invalid @enderror" name="deliveryarea" required>{{ old('deliveryarea') }}</textarea>
                                 @error('deliveryarea')

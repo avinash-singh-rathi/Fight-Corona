@@ -8,7 +8,7 @@ class Supplier extends Model
 {
     //
     protected $fillable = [
-        'name', 'city_id', 'pincode', 'address', 'deliveryarea', 'packageinfo', 'contact', 'image'
+        'name', 'city_id', 'pincode', 'address', 'deliveryarea', 'packageinfo', 'contact', 'image', 'mobile'
     ];
 
     protected $appends = ['image_url'];

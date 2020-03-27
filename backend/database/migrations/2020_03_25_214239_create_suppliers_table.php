@@ -21,6 +21,7 @@ class CreateSuppliersTable extends Migration
             $table->string('pincode');
             $table->text('packageinfo');
             $table->text('contact');
+            $table->string('mobile')->nullable();
             $table->string('image')->nullable();
             $table->unsignedBigInteger('city_id');
             $table->timestamps();

@@ -30,4 +30,12 @@ Route::group(['middleware' => 'auth:api','namespace'=>'Api'], function ($router)
   Route::get('states/{id}/districts', 'LocationController@districts');
   Route::get('districts/{id}/cities', 'LocationController@cities');
   Route::get('cities/{id}/suppliers', 'LocationController@CitySuppliers');
+  Route::get('symptoms', 'PatientController@symptoms');
+  Route::post('patients/create', 'PatientController@store');
+  Route::get('patients', 'PatientController@index');
+  Route::get('lostpatients', 'PatientController@lostpatients');
+  Route::get('news', 'GeneralController@posts');
+  Route::get('precautions', 'GeneralController@precautions');
+  Route::get('helplines', 'GeneralController@helplines');
+  Route::post('feedbacks/create', 'GeneralController@CreateFeedback');
 });
