@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Patient;
+use App\Model\{Country, Symptom, Patient};
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -14,7 +14,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        $patients = Patient::orderBy('created_at', 'desc')->paginate(15);
+        return view('patients.index', ['patients' => $patients]);
     }
 
     /**
@@ -25,6 +26,9 @@ class PatientController extends Controller
     public function create()
     {
         //
+        $countries = Country::all();
+        $symptoms = Symptom::all();
+        return view('patients.create',['countries' => $countries,'symptoms' => $symptoms]);
     }
 
     /**

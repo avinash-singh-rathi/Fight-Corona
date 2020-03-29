@@ -46,6 +46,7 @@ class HelplineController extends Controller
             'country_id' => 'required|exists:countries,id',
             'state_id' => 'nullable|exists:states,id',
             'district_id' => 'nullable|exists:districts,id',
+            'subdistrict_id' => 'nullable|exists:subdistricts,id',
             'city_id' => 'nullable|exists:cities,id',
         ]);
 
@@ -55,6 +56,7 @@ class HelplineController extends Controller
             'country_id' => $request->get('country_id'),
             'state_id' => $request->get('state_id'),
             'district_id' => $request->get('district_id'),
+            'subdistrict_id' => $request->get('subdistrict_id'),
             'city_id' => $request->get('city_id')
         ]);
 
@@ -102,6 +104,7 @@ class HelplineController extends Controller
             'country_id' => 'required|exists:countries,id',
             'state_id' => 'nullable|exists:states,id',
             'district_id' => 'nullable|exists:districts,id',
+            'subdistrict_id' => 'nullable|exists:subdistricts,id',
             'city_id' => 'nullable|exists:cities,id'
         ]);
             $helpline->name = $request->get('name');
@@ -109,6 +112,7 @@ class HelplineController extends Controller
             $helpline->country_id = $request->get('country_id');
             $helpline->state_id = $request->get('state_id');
             $helpline->district_id = $request->get('district_id');
+            $helpline->subdistrict_id = $request->get('subdistrict_id');
             $helpline->city_id = $request->get('city_id');
             $helpline->save();
         return redirect()->back()->with('success', 'Helpline updated successfully!');

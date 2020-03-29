@@ -44,6 +44,7 @@ class PatientController extends Controller
             'country_id' => 'required|exists:countries,id',
             'state_id' => 'required|exists:states,id',
             'district_id' => 'required|exists:districts,id',
+            'subdistrict_id' => 'required|exists:subdistricts,id',
             'lostpatient_id' =>'nullable|exists:lostpatients,id'
         ]);
 
@@ -57,6 +58,7 @@ class PatientController extends Controller
             'country_id' => $request->get('country_id'),
             'state_id' => $request->get('state_id'),
             'district_id' => $request->get('district_id'),
+            'subdistrict_id' => $request->get('subdistrict_id'),
             'city_id' => $request->get('city_id'),
             'user_id' => auth('api')->user()->id
         ]);

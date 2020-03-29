@@ -8,7 +8,7 @@ class Helpline extends Model
 {
     //
     protected $fillable = [
-        'name', 'city_id', 'country_id', 'state_id', 'district_id', 'contact'
+        'name', 'city_id', 'country_id', 'state_id', 'district_id', 'subdistrict_id', 'contact'
     ];
 
     public function country()
@@ -22,6 +22,11 @@ class Helpline extends Model
     public function district()
     {
         return $this->belongsTo('App\Model\District');
+    }
+
+    public function subdistrict()
+    {
+        return $this->belongsTo('App\Model\Subdistrict');
     }
 
     public function city()

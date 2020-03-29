@@ -21,8 +21,9 @@ class CreatePatientsTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('state_id');
             $table->unsignedBigInteger('district_id');
+            $table->unsignedBigInteger('subdistrict_id');
             $table->unsignedBigInteger('city_id');
-            $table->string('city')->nullable();
+            $table->string('cityname')->nullable();
             $table->integer('pincode')->nullable();
             $table->json('symptoms');
             $table->text('message')->nullable();
@@ -43,6 +44,7 @@ class CreatePatientsTable extends Migration
             $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('state_id')->references('id')->on('states');
             $table->foreign('district_id')->references('id')->on('districts');
+            $table->foreign('subdistrict_id')->references('id')->on('subdistricts');
             $table->foreign('city_id')->references('id')->on('cities');
         });
     }

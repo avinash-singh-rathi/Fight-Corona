@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     //
+    protected $table = 'cities';
+
     protected $fillable = [
-        'name', 'district_id', 'pincode'
+        'name', 'subdistrict_id', 'pincode'
     ];
 
-    public function district()
+    public function subdistrict()
     {
-        return $this->belongsTo('App\Model\District');
+        return $this->belongsTo('App\Model\Subdistrict');
     }
 }

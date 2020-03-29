@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">All Cities <span class="float-right"><a href="{{route('cities.create')}}">Create City</a></span></div>
+                <div class="card-header">All Sub-Districts <span class="float-right"><a href="{{route('subdistricts.create')}}">Create Sub-District</a></span></div>
                   <div class="row">
                     <div class="col-sm-12">
                       @if(session()->get('success'))
@@ -16,29 +16,29 @@
                     </div>
                   </div>
                 <div class="card-body">
-                  @if(!$cities->isEmpty())
+                  @if(!$subdistricts->isEmpty())
                   <table class="table table-striped">
                     <thead>
                         <tr>
                           <td>ID</td>
+                          <td>District</td>
                           <td>Sub District</td>
-                          <td>City</td>
                           <td>Pincode</td>
                           <td colspan = 2>Actions</td>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($cities as $city)
+                        @foreach($subdistricts as $subdistrict)
                         <tr>
-                            <td>{{$city->id}}</td>
-                            <td>{{$city->subdistrict->name}}</td>
-                            <td>{{$city->name}}</td>
-                            <td>{{$city->pincode}}</td>
+                            <td>{{$subdistrict->id}}</td>
+                            <td>{{$subdistrict->district->name}}</td>
+                            <td>{{$subdistrict->name}}</td>
+                            <td>{{$subdistrict->pincode}}</td>
                             <td>
-                                <a href="{{ route('cities.edit',$city->id)}}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('subdistricts.edit',$subdistrict->id)}}" class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <form onsubmit="return ConfirmDelete()" action="{{ route('cities.destroy', $city->id)}}" method="post">
+                                <form onsubmit="return ConfirmDelete()" action="{{ route('subdistricts.destroy', $subdistrict->id)}}" method="post">
                                   @csrf
                                   @method('DELETE')
                                   <button class="btn btn-danger" type="submit">Delete</button>
@@ -48,11 +48,11 @@
                         @endforeach
                     </tbody>
                   </table>
-                  {{ $cities->links() }}
+                  {{ $subdistricts->links() }}
                   @else
 
                   <div class="">
-                    Not having any City. Please create <a href="{{route('cities.create')}}">one</a>.
+                    Not having any Sub-District. Please create <a href="{{route('subdistricts.create')}}">one</a>.
                   </div>
 
                   @endif

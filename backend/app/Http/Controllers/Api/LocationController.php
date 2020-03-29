@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\{Country, State, District, City, Supplier};
+use App\Model\{Country, State, District, Subdistrict, City, Supplier};
 
 class LocationController extends Controller
 {
@@ -78,8 +78,13 @@ class LocationController extends Controller
       return response()->json($districts,200);
     }
 
+    public function subdistricts($id){
+      $subdistricts=Subdistrict::where('district_id',$id)->get();
+      return response()->json($subdistricts,200);
+    }
+
     public function cities($id){
-      $cities=City::where('district_id',$id)->get();
+      $cities=City::where('subdistrict_id',$id)->get();
       return response()->json($cities,200);
     }
 

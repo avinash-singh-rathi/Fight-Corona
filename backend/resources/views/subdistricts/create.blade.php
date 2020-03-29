@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Create Helpline <span class="float-right"><a href="{{route('helplines.index')}}">Back</a></span></div>
+                <div class="card-header">Create Sub District <span class="float-right"><a href="{{route('subdistricts.index')}}">Back</a></span></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('helplines.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('subdistricts.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
@@ -22,9 +22,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="contact">{{ __('Contact Number') }}</label>
-                            <input id="contact" type="number" class="form-control @error('contact') is-invalid @enderror" name="contact" required value="{{ old('contact') }}">
-                                @error('contact')
+                            <label for="pincode">{{ __('Pincode') }}</label>
+                                <input id="pincode" type="text" class="form-control @error('pincode') is-invalid @enderror" name="pincode" value="{{ old('pincode') }}" required>
+                                @error('pincode')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -48,7 +48,7 @@
 
                         <div class="form-group">
                             <label for="state_id">{{ __('State') }}</label>
-                                <select onchange="getDistricts()" id="state_id" class="state-select form-control @error('state_id') is-invalid @enderror" name="state_id">
+                                <select onchange="getDistricts()" id="state_id" class="state-select form-control @error('state_id') is-invalid @enderror" required name="state_id">
                                   <option value="">Select State</option>
                                 </select>
                                 <input type="hidden" value="{{ old('state_id') }}" name="stateme" id="stateme">
@@ -61,37 +61,11 @@
 
                         <div class="form-group">
                             <label for="district_id">{{ __('District') }}</label>
-                                <select @change="getSubDistricts()" id="district_id" class="district-select form-control @error('district_id') is-invalid @enderror" name="district_id">
+                                <select id="district_id" class="district-select form-control @error('district_id') is-invalid @enderror" required name="district_id">
                                   <option value="">Select District</option>
                                 </select>
                                 <input type="hidden" value="{{ old('district_id') }}" name="districtme" id="districtme">
                                 @error('district_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subdistrict_id">{{ __('Sub District') }}</label>
-                                <select onchange="getCities()" id="subdistrict_id" class="subdistrict-select form-control @error('subdistrict_id') is-invalid @enderror" name="subdistrict_id">
-                                  <option value="">Select Sub District</option>
-                                </select>
-                                <input type="hidden" value="{{ old('subdistrict_id') }}" name="subdistrictme" id="subdistrictme">
-                                @error('subdistrict_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="city_id">{{ __('City') }}</label>
-                                <select id="city_id" class="city-select form-control @error('city_id') is-invalid @enderror" name="city_id">
-                                  <option value="">Select City</option>
-                                </select>
-                                <input type="hidden" value="{{ old('city_id') }}" name="cityme" id="cityme">
-                                @error('city_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

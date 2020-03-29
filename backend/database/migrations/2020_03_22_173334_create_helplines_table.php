@@ -20,6 +20,7 @@ class CreateHelplinesTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('state_id')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();
+            $table->unsignedBigInteger('subdistrict_id')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
             $table->timestamps();
         });

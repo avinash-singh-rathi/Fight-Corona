@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Storage;
+use App\Model\{State, District, City};
 
 class HomeController extends Controller
 {
@@ -24,5 +26,20 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function test(){
+      $data=Storage::get('public/states.json');
+      $data=json_decode($data);
+      echo "<pre>";
+      //print_r($data);
+
+      foreach($data as $d){
+        $city= new City();
+        $city->name = $d->village;
+        $city->district_id = 220;
+        $city->save();
+        print_r($d);
+      }
     }
 }

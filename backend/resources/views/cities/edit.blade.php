@@ -45,7 +45,7 @@
                                 <select id="country_id" class="form-control @error('country_id') is-invalid @enderror" required name="country_id">
                                   <option value="">Select Country</option>
                                   @foreach($countries as $country)
-                                  <option value="{{$country->id}}" @if(old('country_id') == $country->id || $city->district->state->country_id == $country->id) selected @endif>{{$country->name}}</option>
+                                  <option value="{{$country->id}}" @if(old('country_id') == $country->id || $city->subdistrict->district->state->country_id == $country->id) selected @endif>{{$country->name}}</option>
                                   @endforeach
                                 </select>
                                 @error('country_id')
@@ -60,7 +60,7 @@
                                 <select id="state_id" class="state-select form-control @error('state_id') is-invalid @enderror" required name="state_id">
                                   <option value="">Select State</option>
                                 </select>
-                                <input type="hidden" value="{{ old('state_id',$city->district->state_id) }}" name="stateme" id="stateme">
+                                <input type="hidden" value="{{ old('state_id',$city->subdistrict->district->state_id) }}" name="stateme" id="stateme">
                                 @error('state_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -70,10 +70,23 @@
 
                         <div class="form-group">
                             <label for="district_id">{{ __('District') }}</label>
-                                <select id="district_id" class="district-select form-control @error('district_id') is-invalid @enderror" required name="district_id">
+                                <select @change="getSubDistricts()" id="district_id" class="district-select form-control @error('district_id') is-invalid @enderror" required name="district_id">
                                   <option value="">Select District</option>
                                 </select>
-                                <input type="hidden" value="{{ old('district_id',$city->district_id) }}" name="districtme" id="districtme">
+                                <input type="hidden" value="{{ old('district_id',$city->subdistrict->district_id) }}" name="districtme" id="districtme">
+                                @error('district_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subdistrict_id">{{ __('Sub District') }}</label>
+                                <select id="subdistrict_id" class="subdistrict-select form-control @error('subdistrict_id') is-invalid @enderror" required name="subdistrict_id">
+                                  <option value="">Select Sub District</option>
+                                </select>
+                                <input type="hidden" value="{{ old('subdistrict_id',$city->subdistrict_id) }}" name="subdistrictme" id="subdistrictme">
                                 @error('district_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

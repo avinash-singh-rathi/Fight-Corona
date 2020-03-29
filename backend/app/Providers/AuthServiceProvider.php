@@ -34,6 +34,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->user_type == 'author';
         });
 
+        $gate->define('isUser',function(){
+            return $user->user_type == 'user';
+        });
+
         //
     }
 }

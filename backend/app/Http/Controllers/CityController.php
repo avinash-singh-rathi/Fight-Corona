@@ -41,15 +41,15 @@ class CityController extends Controller
     {
         //
         $request->validate([
-            'name'=>'required|unique:cities,name,null,null,district_id,'.$request->get('district_id'),
+            'name'=>'required|unique:cities,name,null,null,subdistrict_id,'.$request->get('subdistrict_id'),
             'pincode'=>'required',
-            'district_id' => 'required|exists:districts,id'
+            'subdistrict_id' => 'required|exists:subdistricts,id'
         ]);
 
         $city = new City([
             'name' => $request->get('name'),
             'pincode' => $request->get('pincode'),
-            'district_id' => $request->get('district_id')
+            'subdistrict_id' => $request->get('subdistrict_id')
         ]);
         $city->save();
         return redirect('/cities')->with('success', 'City created successfully!');
@@ -90,13 +90,13 @@ class CityController extends Controller
     {
         //
         $request->validate([
-            'name'=>'required|unique:cities,name,'.$city->id.',id,district_id,'.$request->get('district_id'),
+            'name'=>'required|unique:cities,name,'.$city->id.',id,subdistrict_id,'.$request->get('subdistrict_id'),
             'pincode'=>'required',
-            'district_id' => 'required|exists:districts,id'
+            'subdistrict_id' => 'required|exists:subdistricts,id'
         ]);
             $city->name = $request->get('name');
             $city->pincode = $request->get('pincode');
-            $city->district_id = $request->get('district_id');
+            $city->subdistrict_id = $request->get('subdistrict_id');
 
             $city->save();
         return redirect()->back()->with('success', 'City updated successfully!');
@@ -118,8 +118,9 @@ class CityController extends Controller
     /*
     Get the cities by the district id and return json
     */
-    public function getCitiesByDistrict(Request $request){
-      $cities=City::where('district_id',$request->get('district_id'))->get();
+    public function getCitiesBySubdistrict(Request $request){
+      $cities=City::where('subdistrict_id',$request->get('subdistrict_id'))->get();
       return response()->json(['data'=>$cities],200);
     }
+
 }

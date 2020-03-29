@@ -13,13 +13,22 @@ class CreateCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('subdistricts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('pincode')->nullable();
             $table->unsignedBigInteger('district_id');
             $table->timestamps();
             $table->foreign('district_id')->references('id')->on('districts');
+        });
+
+        Schema::create('cities', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('pincode')->nullable();
+            $table->unsignedBigInteger('subdistrict_id');
+            $table->timestamps();
+            $table->foreign('subdistrict_id')->references('id')->on('subdistricts');
         });
     }
 
@@ -30,6 +39,7 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+      Schema::dropIfExists('subdistricts');
+      Schema::dropIfExists('cities');
     }
 }

@@ -94,19 +94,24 @@ class GeneralController extends Controller
           $helplines=Helpline::where('city_id',$request->get('city'))->get();
           return response()->json($helplines,200);
         }
+        if($request->get('subdistrict')){
+          //
+          $helplines=Helpline::where('subdistrict_id',$request->get('subdistrict'))->whereNull('city_id')->get();
+          return response()->json($helplines,200);
+        }
         if($request->get('district')){
           //
-          $helplines=Helpline::where('district_id',$request->get('district'))->whereNull('city_id')->get();
+          $helplines=Helpline::where('district_id',$request->get('district'))->whereNull('subdistrict_id')->whereNull('city_id')->get();
           return response()->json($helplines,200);
         }
         if($request->get('state')){
           //
-          $helplines=Helpline::where('state_id',$request->get('state'))->whereNull('district_id')->whereNull('city_id')->get();
+          $helplines=Helpline::where('state_id',$request->get('state'))->whereNull('district_id')->whereNull('subdistrict_id')->whereNull('city_id')->get();
           return response()->json($helplines,200);
         }
         if($request->get('country')){
           //
-          $helplines=Helpline::where('country_id',$request->get('country'))->whereNull('state_id')->whereNull('district_id')->whereNull('city_id')->get();
+          $helplines=Helpline::where('country_id',$request->get('country'))->whereNull('state_id')->whereNull('district_id')->whereNull('subdistrict_id')->whereNull('city_id')->get();
           return response()->json($helplines,200);
         }
     }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Feedback;
+use App\User;
 use Illuminate\Http\Request;
 
-class FeedbackController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class FeedbackController extends Controller
     public function index()
     {
         //
-        $feedbacks = Feedback::orderBy('created_at', 'desc')->paginate(15);
-        return view('feedbacks.index', ['feedbacks' => $feedbacks]);
+        $users = User::paginate(15);
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -38,50 +38,64 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Feedback  $feedback
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Feedback $feedback)
+    public function show(User $user)
     {
         //
-        return view('feedbacks.show', ['feedback' => $feedback]);
+        return view('users.show', ['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Feedback  $feedback
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Feedback $feedback)
+    public function edit(User $user)
     {
         //
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Feedback  $feedback
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Feedback $feedback)
+    public function update(Request $request, User $user)
     {
         //
+        $request->validate([
+          'name' => 'required|string|max:255',
+          'mobile'=> 'required|numeric|digits:10|unique:users,mobile,'.$user->id,
+          'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+        ]);
+            $user->name = $request->get('name');
+            $user->mobile = $request->get('mobile');
+            $user->email = $request->get('email');
+            $user->user_type = $request->get('user_type');
+
+        $user->save();
+        return redirect()->back()->with('success', 'User updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Feedback  $feedback
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Feedback $feedback)
+    public function destroy(User $user)
     {
         //
     }

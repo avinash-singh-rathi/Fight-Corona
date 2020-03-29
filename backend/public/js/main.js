@@ -18,6 +18,9 @@ async function loadPreviousState(){
   await getDistricts();
   var district = $('#districtme').val();
   $('.district-select option[value="'+district+'"]').prop('selected', true);
+  await getSubDistricts();
+  var subdistrict = $('#subdistrictme').val();
+  $('.subdistrict-select option[value="'+subdistrict+'"]').prop('selected', true);
   await getCities();
   var city = $('#cityme').val();
   $('.city-select option[value="'+city+'"]').prop('selected', true);
@@ -66,13 +69,35 @@ function getDistricts(){
   });
 }
 
-function getCities(){
+function getSubDistricts(){
   return new Promise(resolve => {
     var district_id=$('#district_id').val();
-    var $select = $('#city_id');
+    var $select = $('#subdistrict_id');
     $select.find('option').remove();
     if(district_id != null || district_id != undefined || district_id != ''){
-      $.get('/country/state/district/cities', {district_id:district_id}, function (data, textStatus, jqXHR) {
+      $.get('/country/state/district/subdistricts', {district_id:district_id}, function (data, textStatus, jqXHR) {
+        $select.append('<option value="">Select Sub District</option>');
+        $.each(data.data,function(key, value)
+        {
+            $select.append('<option value=' + value.id + '>' + value.name + '</option>');
+        });
+        resolve('resolved');
+      });
+    }else{
+      $('#subdistrict_id').val('');
+      resolve('resolved');
+    }
+  });
+}
+
+
+function getCities(){
+  return new Promise(resolve => {
+    var subdistrict_id=$('#subdistrict_id').val();
+    var $select = $('#city_id');
+    $select.find('option').remove();
+    if(subdistrict_id != null || subdistrict_id != undefined || subdistrict_id != ''){
+      $.get('/country/state/district/subdistrict/cities', {subdistrict_id:subdistrict_id}, function (data, textStatus, jqXHR) {
         $select.append('<option value="">Select City</option>');
         $.each(data.data,function(key, value)
         {

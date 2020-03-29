@@ -67,6 +67,7 @@ class LostPatientController extends Controller
     public function show(Lostpatient $lostpatient)
     {
         //
+        return view('lostpatients.show', ['lostpatient' => $lostpatient]);
     }
 
     /**

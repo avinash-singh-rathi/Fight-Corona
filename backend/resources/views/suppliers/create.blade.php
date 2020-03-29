@@ -112,11 +112,24 @@
 
                         <div class="form-group">
                             <label for="district_id">{{ __('District') }}</label>
-                                <select onchange="getCities()" id="district_id" class="district-select form-control @error('district_id') is-invalid @enderror" required name="district_id">
+                                <select onchange="getSubDistricts()" id="district_id" class="district-select form-control @error('district_id') is-invalid @enderror" required name="district_id">
                                   <option value="">Select District</option>
                                 </select>
                                 <input type="hidden" value="{{ old('district_id') }}" name="districtme" id="districtme">
                                 @error('district_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subdistrict_id">{{ __('Sub District') }}</label>
+                                <select onchange="getCities()" id="subdistrict_id" class="subdistrict-select form-control @error('subdistrict_id') is-invalid @enderror" required name="subdistrict_id">
+                                  <option value="">Select Sub District</option>
+                                </select>
+                                <input type="hidden" value="{{ old('subdistrict_id') }}" name="subdistrictme" id="subdistrictme">
+                                @error('subdistrict_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

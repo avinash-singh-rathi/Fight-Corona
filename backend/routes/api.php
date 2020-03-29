@@ -28,7 +28,8 @@ Route::group(['middleware' => 'auth:api','namespace'=>'Api'], function ($router)
   Route::get('countries', 'LocationController@countries');
   Route::get('countries/{id}/states', 'LocationController@states');
   Route::get('states/{id}/districts', 'LocationController@districts');
-  Route::get('districts/{id}/cities', 'LocationController@cities');
+  Route::get('districts/{id}/subdistricts', 'LocationController@subdistricts');
+  Route::get('subdistricts/{id}/cities', 'LocationController@cities');
   Route::get('cities/{id}/suppliers', 'LocationController@CitySuppliers');
   Route::get('symptoms', 'PatientController@symptoms');
   Route::post('patients/create', 'PatientController@store');
