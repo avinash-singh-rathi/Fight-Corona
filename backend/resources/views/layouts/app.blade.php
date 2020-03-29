@@ -49,65 +49,67 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="precautionsnavbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Precautions <span class="caret"></span>
-                                </a>
+                            @can('isAdmin')
+                              <li class="nav-item dropdown">
+                                  <a id="precautionsnavbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                      Precautions <span class="caret"></span>
+                                  </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="precautionsnavbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('precautions.index') }}">
-                                        {{ __('All') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('precautions.create') }}">
-                                        {{ __('Create') }}
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="newsnavbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    News <span class="caret"></span>
-                                </a>
+                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="precautionsnavbarDropdown">
+                                      <a class="dropdown-item" href="{{ route('precautions.index') }}">
+                                          {{ __('All') }}
+                                      </a>
+                                      <a class="dropdown-item" href="{{ route('precautions.create') }}">
+                                          {{ __('Create') }}
+                                      </a>
+                                  </div>
+                              </li>
+                              <li class="nav-item dropdown">
+                                  <a id="newsnavbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                      News <span class="caret"></span>
+                                  </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="newsnavbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('posts.index') }}">
-                                        {{ __('All') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('posts.create') }}">
-                                        {{ __('Create') }}
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="symptomsnavbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Symptoms <span class="caret"></span>
-                                </a>
+                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="newsnavbarDropdown">
+                                      <a class="dropdown-item" href="{{ route('posts.index') }}">
+                                          {{ __('All') }}
+                                      </a>
+                                      <a class="dropdown-item" href="{{ route('posts.create') }}">
+                                          {{ __('Create') }}
+                                      </a>
+                                  </div>
+                              </li>
+                              <li class="nav-item dropdown">
+                                  <a id="symptomsnavbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                      Symptoms <span class="caret"></span>
+                                  </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="symptomsnavbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('symptoms.index') }}">
-                                        {{ __('All') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('symptoms.create') }}">
-                                        {{ __('Create') }}
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="symptomsnavbarDropdown">
+                                      <a class="dropdown-item" href="{{ route('symptoms.index') }}">
+                                          {{ __('All') }}
+                                      </a>
+                                      <a class="dropdown-item" href="{{ route('symptoms.create') }}">
+                                          {{ __('Create') }}
+                                      </a>
+                                  </div>
+                              </li>
+                            @endcan
+                              <li class="nav-item dropdown">
+                                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                      {{ Auth::user()->name }} <span class="caret"></span>
+                                  </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                      <a class="dropdown-item" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                          {{ __('Logout') }}
+                                      </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                          @csrf
+                                      </form>
+                                  </div>
+                              </li>
                         @endguest
                     </ul>
                 </div>
