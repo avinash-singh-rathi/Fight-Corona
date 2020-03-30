@@ -87,10 +87,11 @@
                     India believes in mankind. We, Indians are fighting with this disastrous Corona with the patience, love, support and unity. We stand with the people. We stand for the Humanity. Stand together, Fight Corona.
                 </div>
                 <div class="">
-                  Korona Harega! Tabhi to Insaan aage badhega!  
+                  Korona Harega! Tabhi to Insaan aage badhega!
                 </div>
                 <div class="links">
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://www.pmindia.gov.in/en/#">Please donate to PM Cares</a>
+                    <a href="/privacy-policy">Privacy Policy</a>
                 </div>
             </div>
         </div>
