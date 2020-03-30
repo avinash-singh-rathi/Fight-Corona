@@ -90,7 +90,7 @@
                   Korona Harega! Tabhi to Insaan aage badhega!
                 </div>
                 <div class="links">
-                    <a href="https://www.pmindia.gov.in/en/#">Please donate to PM Cares</a>
+                    <a target="_blank" href="https://www.pmindia.gov.in/en/#">Please donate to PM Cares</a>
                     <a href="/privacy-policy">Privacy Policy</a>
                 </div>
             </div>
