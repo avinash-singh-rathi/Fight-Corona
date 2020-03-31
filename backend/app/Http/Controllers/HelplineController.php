@@ -127,7 +127,7 @@ class HelplineController extends Controller
     public function destroy(Helpline $helpline)
     {
         //
-        $supplier->delete();
-        return redirect('/suppliers')->with('success', 'Supplier deleted successfully!');
+        $helpline->delete();
+        return redirect('/helplines')->with('success', 'Helpline deleted successfully!');
     }
 }

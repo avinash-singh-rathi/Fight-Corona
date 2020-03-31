@@ -69,22 +69,22 @@ class LocationController extends Controller
     }
 
     public function states($id){
-      $states=State::where('country_id',$id)->get();
+      $states=State::where('country_id',$id)->orderBy('name','asc')->get();
       return response()->json($states,200);
     }
 
     public function districts($id){
-      $districts=District::where('state_id',$id)->get();
+      $districts=District::where('state_id',$id)->orderBy('name','asc')->get();
       return response()->json($districts,200);
     }
 
     public function subdistricts($id){
-      $subdistricts=Subdistrict::where('district_id',$id)->get();
+      $subdistricts=Subdistrict::where('district_id',$id)->orderBy('name','asc')->get();
       return response()->json($subdistricts,200);
     }
 
     public function cities($id){
-      $cities=City::where('subdistrict_id',$id)->get();
+      $cities=City::where('subdistrict_id',$id)->orderBy('name','asc')->get();
       return response()->json($cities,200);
     }
 
